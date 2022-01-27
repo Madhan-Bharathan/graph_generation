@@ -21,14 +21,10 @@ def grapher(arr) :
             sum += arr[i]
         else :
             sum -= arr[i]
-
+        if sum<0:
+            negative-=sum
         peakArr.append(sum)
         peak = max(sum,peak)
-
-        # Checking if the peak value is negative
-        if sum < 0:
-            print("Peak value cannot be negative please re-enter the correct input")
-            exit()
         i += 1
 
     i = 0
@@ -74,7 +70,7 @@ def grapher(arr) :
     
     # Printing the graph
     i = 0
-    while (i <= peak) :
+    while (i <= peak+negative) :
         j = 0
         while (j <= sumOfInput) :
             if (graph[i][j] == 1) :
