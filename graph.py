@@ -9,8 +9,9 @@ def grapher(arr) :
     peakArr=[]
     temp=0
     symbpos=0
+    negative=0
 
-    # Loop for finding the commulative sum
+    # Loop for finding the cummulative sum
     i = 0
     while (i < len(arr)) :
         temp+=arr[i]
@@ -20,11 +21,17 @@ def grapher(arr) :
             sum += arr[i]
         else :
             sum -= arr[i]
+
         peakArr.append(sum)
         peak = max(sum,peak)
-        i += 1
-    i = 0
 
+        # Checking if the peak value is negative
+        if sum < 0:
+            print("Peak value cannot be negative please re-enter the correct input")
+            exit()
+        i += 1
+
+    i = 0
     # To find the position of symbol
     while(i<len(peakArr)):
         if peakArr[i] == peak:
@@ -32,7 +39,7 @@ def grapher(arr) :
         i += 1
 
     # Declaring a 2-D array
-    graph = [[0] * (sumOfInput+1) for _ in range(peak+2)]
+    graph = [[0] * (sumOfInput+1) for _ in range(peak+2+negative)]
     # Declaring the start of row,column and filler=0
     startRow = peak
     startColumn = 0
@@ -84,6 +91,8 @@ def grapher(arr) :
 if __name__=="__main__":
     index=[]
     str=input("Enter the input (Separated by space):")
+    # Removing the white space at the beginning and at the end of the input
+    str=str.strip()
     index = list(str.split(" "))
     index = [int(i) for i in index]
     grapher(index)
