@@ -91,5 +91,8 @@ if __name__=="__main__":
     str=str.strip()
     index = list(str.split(" "))
     index = [int(i) for i in index]
+    if 0 in index:
+        index.remove(0)
+
     grapher(index)
 
